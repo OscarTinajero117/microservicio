@@ -8,8 +8,7 @@ defmodule Microservicio.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Microservicio.Worker.start_link(arg)
-      # {Microservicio.Worker, arg}
+      Plug.Cowboy.child_spec(scheme: :http, plug: Microservicio.Ruta, options: [port: 8080])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
